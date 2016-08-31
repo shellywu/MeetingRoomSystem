@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SupportLayer.CoreModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,8 +8,8 @@ namespace SupportLayer.Manager.Account
 {
     interface IUserLogin
     {
-        bool UserLogin(string email,string passwd);
-        bool UserLogin(int phone,string paawd);
+        Task<AUser> UserLogin(string email,string passwd);
+        Task<AUser> UserLogin(int phone,string paawd) ;
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using SupportLayer.CoreModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace SupportLayer.Manager.Token
 {
     interface IUserIdentityCreator
     {
-        Task<ClaimsIdentity> CreateIdentity(string userName,string pwd);
+        Task<ClaimsIdentity> CreateIdentityByPassword(string userName,string passwd);
     }
 }

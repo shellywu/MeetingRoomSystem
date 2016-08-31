@@ -7,6 +7,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using SupportLayer.Manager.Token;
+using SupportLayer.Manager.Account;
+using SupportLayer.CoreModel;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace MRServerAPI
 {
@@ -50,7 +56,17 @@ namespace MRServerAPI
 
             app.UseApplicationInsightsExceptionTelemetry();
 
-            //app.UseMiddleware<;
+            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("wakaka"));
+
+            var options = new IdentityTokenProvider() {
+                SignManager=new CSignManager(new AppUser()),
+                TokenParamters=new CTokenParameters() {
+                    Audience = "ExampleAudience",
+                    Issuer = "ExampleIssuer",
+                    SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256)
+                }
+            };
+            app.UseMiddleware<CTokenProviderMiddleware>(new object[] { options});
 
             app.UseMvc();
         }

@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using SupportLayer.CoreModel;
+using SupportLayer.Manager.Account;
+using Microsoft.Extensions.OptionsModel;
 
 namespace SupportLayer.Manager.Token
 {
     public class CTokenProviderMiddleware : AbstractMiddleware
     {
         private AIdentityTokenProvider _tokenProvider;
-        public CTokenProviderMiddleware(RequestDelegate next, ATokenParameters parameters,AIdentityTokenProvider identifyTokenProvider):base(next,parameters)
+        public CTokenProviderMiddleware(RequestDelegate next,AIdentityTokenProvider options):base(next,options.TokenParamters)
         {
-            _tokenProvider = identifyTokenProvider;
+            _tokenProvider = options;
         }
 
         public override Task Invoke(HttpContext context)

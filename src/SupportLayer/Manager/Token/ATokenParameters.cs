@@ -8,7 +8,7 @@ namespace SupportLayer.Manager.Token
 {
     public abstract class ATokenParameters
     {
-        public abstract string Path { get; set; }
+        public abstract string Path { get; }
         public string Issuer { get; set; }
         public string Audience { get; set; }
         public TimeSpan Expiration { get; set; } = TimeSpan.FromMinutes(5);

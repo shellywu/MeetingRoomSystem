@@ -5,7 +5,8 @@
     "Microsoft.AspNetCore.Http.Abstractions": "1.0.0",
     "Microsoft.Extensions.OptionsModel": "1.0.0-rc1-final",
     "Microsoft.IdentityModel.Tokens": "5.0.0",
-    "NETStandard.Library": "1.6.0"
+    "NETStandard.Library": "1.6.0",
+    "System.IdentityModel.Tokens.Jwt": "5.0.0"
   },
 
   "frameworks": {

@@ -12,5 +12,6 @@ namespace SupportLayer.Manager.Account
         bool AddUser(AUser user,AApp app);
         bool ModifyUser(AUser modifyUser);
         bool DeleteUser(AUser user);
+        bool IsExsit(AUser user);
     }
 }

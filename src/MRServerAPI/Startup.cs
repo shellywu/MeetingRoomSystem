@@ -50,6 +50,8 @@ namespace MRServerAPI
 
             app.UseApplicationInsightsExceptionTelemetry();
 
+            //app.UseMiddleware<;
+
             app.UseMvc();
         }
     }

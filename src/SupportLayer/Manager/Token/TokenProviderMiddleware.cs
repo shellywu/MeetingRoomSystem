@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CommonUtitly
+namespace SupportLayer.Manager.Token
 {
-    public class Class1
+    public class TokenProviderMiddleware
     {
-        public Class1()
-        {
-        }
     }
 }

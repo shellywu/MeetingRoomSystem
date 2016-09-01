@@ -27,8 +27,16 @@ namespace SupportLayer.Manager.Token
                 context.Response.StatusCode = 400;
                 return context.Response.WriteAsync("Bad request");
             }
+            try
+            {
 
-            return _tokenProvider.CreateToken(context);
+                return _tokenProvider.CreateToken(context);
+            }
+            catch (Exception ex)
+            {
+                context.Response.StatusCode = 500;
+                return context.Response.WriteAsync("internalError");
+            }
         }
     }
 }

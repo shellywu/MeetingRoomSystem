@@ -56,7 +56,7 @@ namespace MRServerAPI
 
             app.UseApplicationInsightsExceptionTelemetry();
 
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("wakaka"));
+            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("mysupersecret_secretkey!123"));
 
             var options = new IdentityTokenProvider() {
                 SignManager=new CSignManager(new AppUser()),
@@ -67,6 +67,29 @@ namespace MRServerAPI
                 }
             };
             app.UseMiddleware<CTokenProviderMiddleware>(new object[] { options});
+
+            var tokenValidationParameters = new TokenValidationParameters {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = signingKey,
+
+                ValidateIssuer = true,
+                ValidIssuer = "ExampleIssuer",
+
+                ValidateAudience = true,
+                ValidAudience = "ExampleAudience",
+
+                // Validate the token expiry
+                ValidateLifetime = true,
+
+                // If you want to allow a certain amount of clock drift, set that here:
+                ClockSkew = TimeSpan.Zero
+            };
+
+            app.UseJwtBearerAuthentication(new JwtBearerOptions {
+                AutomaticAuthenticate=true,
+                AutomaticChallenge=true,
+                TokenValidationParameters=tokenValidationParameters
+            });
 
             app.UseMvc();
         }

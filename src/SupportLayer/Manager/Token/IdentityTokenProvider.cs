@@ -32,8 +32,8 @@ namespace SupportLayer.Manager.Token
         {
             var username = context.Request.Form["username"];
             var password = context.Request.Form["password"];
-            
-            var identity = await CreateIdentityByPassword(username,password);
+
+            var identity = await CreateIdentityByPassword(username, password);
             if (identity == null)
             {
                 context.Response.StatusCode = 400;
@@ -55,17 +55,23 @@ namespace SupportLayer.Manager.Token
                 expires: now.Add(TokenParamters.Expiration),
                 signingCredentials: TokenParamters.SigningCredentials
                 );
-            var encodeJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
-
-            var response = new
+            try
             {
-                access_token = encodeJwt,
-                expires_in = (int)TokenParamters.Expiration.TotalSeconds
-            };
 
-            context.Response.ContentType = "application/json";
-            await context.Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
+                var encodeJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+                var response = new
+                {
+                    access_token = encodeJwt,
+                    expires_in = (int)TokenParamters.Expiration.TotalSeconds
+                };
+
+                context.Response.ContentType = "application/json";
+                await context.Response.WriteAsync(JsonConvert.SerializeObject(response, new JsonSerializerSettings { Formatting = Formatting.Indented }));
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         private long ToUnixEpochDate(DateTime utcNow)

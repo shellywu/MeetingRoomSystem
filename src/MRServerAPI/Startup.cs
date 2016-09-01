@@ -13,6 +13,7 @@ using SupportLayer.CoreModel;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace MRServerAPI
 {
@@ -56,13 +57,17 @@ namespace MRServerAPI
 
             app.UseApplicationInsightsExceptionTelemetry();
 
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("mysupersecret_secretkey!123"));
+            var securityKey = Configuration.GetValue<string>("SecretConfig:TokenConfiguration:SecurityKey");
+            var aduience = Configuration.GetValue<string>("SecretConfig:TokenConfiguration:Audience");
+            var issuer = Configuration.GetValue<string>("SecretConfig:TokenConfiguration:wxl");
+
+            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(securityKey));
 
             var options = new IdentityTokenProvider() {
                 SignManager=new CSignManager(new AppUser()),
                 TokenParamters=new CTokenParameters() {
-                    Audience = "ExampleAudience",
-                    Issuer = "ExampleIssuer",
+                    Audience = aduience,
+                    Issuer = issuer,
                     SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256)
                 }
             };
@@ -73,10 +78,10 @@ namespace MRServerAPI
                 IssuerSigningKey = signingKey,
 
                 ValidateIssuer = true,
-                ValidIssuer = "ExampleIssuer",
+                ValidIssuer = issuer,
 
                 ValidateAudience = true,
-                ValidAudience = "ExampleAudience",
+                ValidAudience = aduience,
 
                 // Validate the token expiry
                 ValidateLifetime = true,

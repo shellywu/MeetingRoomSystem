@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SupportLayer.CoreModel;
+using SupportLayer.CoreModel.Abstraction;
+using SupportLayer.Manager.Account.Abstraction;
 
 namespace SupportLayer.Manager.Account
 {

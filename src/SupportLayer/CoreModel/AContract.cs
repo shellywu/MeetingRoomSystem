@@ -1,4 +1,4 @@
-﻿namespace SupportLayer.CoreModel
+﻿namespace SupportLayer.CoreModel.Abstraction
 {
     public abstract class AContract
     {

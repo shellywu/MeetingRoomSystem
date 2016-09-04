@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SupportLayer.CoreModel
+namespace SupportLayer.CoreModel.Abstraction
 {
     /// <summary>
     /// 用于角色的抽象

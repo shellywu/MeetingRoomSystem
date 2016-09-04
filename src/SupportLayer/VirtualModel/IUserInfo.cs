@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using SupportLayer.CoreModel;
+using SupportLayer.CoreModel.Abstraction;
 
-namespace SupportLayer.VirtualModel
+namespace SupportLayer.VirtualModel.Abstraction
 {
     interface IUserInfo
     {

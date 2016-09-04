@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SupportLayer.CoreModel
+namespace SupportLayer.CoreModel.Abstraction
 {
     public abstract class AUser
     {

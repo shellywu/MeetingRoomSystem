@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using SupportLayer.CoreModel;
 using SupportLayer.Manager.Account;
 using Microsoft.Extensions.OptionsModel;
+using SupportLayer.Manager.Token.Abstraction;
 
 namespace SupportLayer.Manager.Token
 {

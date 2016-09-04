@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
-namespace SupportLayer.Manager.Token
+namespace SupportLayer.Manager.Token.Abstraction
 {
     public abstract class AbstractMiddleware
     {

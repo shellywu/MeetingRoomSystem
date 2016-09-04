@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SupportLayer.CoreModel;
+using SupportLayer.CoreModel.Abstraction;
 
-namespace SupportLayer.Manager.Account
+namespace SupportLayer.Manager.Account.Abstraction
 {
     public abstract class AUserManager : IUserManage, IUserRoleManage
     {

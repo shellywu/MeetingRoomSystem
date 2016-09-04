@@ -6,7 +6,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace SupportLayer.Manager.Token
+namespace SupportLayer.Manager.Token.Abstraction
 {
     interface IUserIdentityCreator
     {

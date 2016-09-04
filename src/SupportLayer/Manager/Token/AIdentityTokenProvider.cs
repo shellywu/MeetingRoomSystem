@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Http;
 using SupportLayer.CoreModel;
 using SupportLayer.Manager.Account;
+using SupportLayer.Manager.Account.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-namespace SupportLayer.Manager.Token
+namespace SupportLayer.Manager.Token.Abstraction
 {
     public abstract class AIdentityTokenProvider : IIdentityTokenCreator, IUserIdentityCreator
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 
-namespace SupportLayer.Manager.Token
+namespace SupportLayer.Manager.Token.Abstraction
 {
     public abstract class ATokenParameters
     {

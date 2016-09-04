@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SupportLayer.VirtualModel
+namespace SupportLayer.VirtualModel.Abstraction
 {
     interface IUser
     {

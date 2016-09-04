@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SupportLayer.CoreModel
+namespace SupportLayer.CoreModel.Abstraction
 {
     /// <summary>
     /// 用于分享后邀请其他人加入的唯一标识

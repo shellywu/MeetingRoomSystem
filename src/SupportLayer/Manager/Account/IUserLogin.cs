@@ -1,10 +1,11 @@
 ﻿using SupportLayer.CoreModel;
+using SupportLayer.CoreModel.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SupportLayer.Manager.Account
+namespace SupportLayer.Manager.Account.Abstraction
 {
     interface IUserLogin
     {

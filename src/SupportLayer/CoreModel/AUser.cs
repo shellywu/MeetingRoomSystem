@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SupportLayer.CoreModel
+namespace SupportLayer.CoreModel.Abstraction
 {
     public abstract class AUser
     {
@@ -15,7 +15,7 @@ namespace SupportLayer.CoreModel
         public DateTime CreateDate { get; set; }
         public DateTime ModifyDate { get; set; }
         public AUser CreateBy { get; set; }
-        public ICollection<AUserRole> UserRole { get; set; }
+        public IEnumerable<AUserRole> UserRole { get; set; }
         public AApp App { get; set; }
     }
 }

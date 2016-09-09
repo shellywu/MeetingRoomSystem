@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SupportLayer.CoreModel
+namespace SupportLayer.CoreModel.Abstraction
 {
     public abstract class AUserinfo
     {
@@ -11,6 +11,6 @@ namespace SupportLayer.CoreModel
         /// <summary>
         /// 不包括电话邮箱，因为电话邮箱常被用来登录
         /// </summary>
-        public abstract ICollection<AContract> Contracts { get; set; }
+        public abstract IEnumerable<AContract> Contracts { get; set; }
     }
 }

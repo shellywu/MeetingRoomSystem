@@ -21,22 +21,5 @@ namespace SupportLayer.CoreModel.Abstraction
         public AEvent EventThing { get; private set; }
 
         public string Remark { get; set; }
-
-        public ABookOrder(AUser user, ARoom room, AEvent thing)
-        {
-            User = user;
-            Room = room;
-            EventThing = thing;
-        }
-        /// <summary>
-        /// 预定房间
-        /// </summary>
-        /// <param name="user">预定人</param>
-        /// <param name="room">房间</param>
-        /// <param name="thing">事情</param>
-        /// <returns></returns>
-        public abstract bool BookOrder();
-        public abstract bool CancelOrder();
-        public abstract bool EditOrder(AUser user, ARoom room, AEvent thing);
     }
 }

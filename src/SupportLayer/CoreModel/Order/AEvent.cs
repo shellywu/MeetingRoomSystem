@@ -10,5 +10,12 @@ namespace SupportLayer.CoreModel.Abstraction
     /// </summary>
     public abstract class AEvent
     {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Describe { get; set; }
+        /// <summary>
+        /// pre requre things to do
+        /// </summary>
+        public ICollection<Order.Abstraction.ATodoItem> PreTodoList { get; set; }
     }
 }

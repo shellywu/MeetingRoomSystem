@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SupportLayer.Manager.Room.Abstraction;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,7 +16,7 @@ namespace SupportLayer.CoreModel.Abstraction
         public DateTime CreateDate { get; set; }
         public DateTime ModifyDate { get; set; }
         public AUser CreateBy { get; set; }
-        public ICollection<AUserRole> UserRole { get; set; }
+        public IEnumerable<AUserRole> UserRole { get; set; }
         public AApp App { get; set; }
     }
 }

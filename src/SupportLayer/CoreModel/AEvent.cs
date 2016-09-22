@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 namespace SupportLayer.CoreModel.Abstraction
 {
     /// <summary>
-    /// 用于角色的抽象
+    /// 需要通知哪些人，需要备注哪些事情，需要做哪些准备
     /// </summary>
-    public abstract class AUserRole
+    public abstract class AEvent
     {
-        public int Id { get; set; }
-        public string RoleName { get; set; }
     }
 }

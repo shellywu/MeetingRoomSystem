@@ -1,4 +1,5 @@
-﻿using SupportLayer.CoreModel.Abstraction;
+﻿using SupportLayer.CoreModel;
+using SupportLayer.CoreModel.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;

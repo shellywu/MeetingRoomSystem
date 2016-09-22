@@ -2,37 +2,60 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SupportLayer.CoreModel;
+using SupportLayer.Manager.Account.Abstraction;
 using SupportLayer.CoreModel.Abstraction;
+using SupportLayer.DB;
 
-namespace SupportLayer.Manager.Account.Abstraction
+namespace SupportLayer.Manager.Account
 {
     public class CUserManager : AUserManager
     {
+        private AppDbContext context = new AppDbContext();
+        public CUserManager()
+        {
+        }
         public override bool AddUser(AUser user, AApp app)
         {
-            throw new NotImplementedException();
+            user.App = app;
+            context.Users.Add(user as AppUser);
+            context.SaveChanges();
+            return true;
+        }
+
+        public override bool AddUserRole(AUser user, AUserRole userRole)
+        {
+            var urmap = new UserRoleMap() { User = user as AppUser, Role = userRole as Role };
+            context.UserRoleMap.Add(urmap);
+            context.SaveChanges();
+            return true;
         }
 
         public override bool DeleteUser(AUser user)
         {
-            throw new NotImplementedException();
+            context.Users.Remove(user as AppUser);
+            context.SaveChanges();
+            return true;
         }
 
         public override bool DeleteUserRole(AUser user, AUserRole userRole)
         {
-            throw new NotImplementedException();
+            context.UserRoleMap.Remove(new UserRoleMap { User = user as AppUser, Role = userRole as Role });
+            context.SaveChanges();
+            return true;
         }
 
         public override bool IsExsit(AUser user)
         {
-            user.Name = "wxl";
-            user.NickName = "hello world";
-            return true;
+            var r = context.Users.Where(e => e.Name.Equals(user.Name) && e.Password.Equals(user.Password)).Count();
+            return r > 0 ? true : false;
         }
 
         public override bool ModifyUser(AUser modifyUser)
         {
-            throw new NotImplementedException();
+            context.Users.Update(modifyUser as AppUser);
+            context.SaveChanges();
+            return true;
         }
     }
 }

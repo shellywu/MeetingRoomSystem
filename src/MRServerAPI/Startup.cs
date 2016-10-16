@@ -44,6 +44,13 @@ namespace MRServerAPI
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
+            //容许跨域请求
+            services.AddCors(options=> {
+                options.AddPolicy("WhiteList",builder=> {
+                    builder.WithOrigins(Configuration.GetValue<string[]>("WhiteList"))
+                    .WithMethods("GET", "POST", "PUT", "DELETE");
+                });
+            });
 
             services.AddMvc();
         }
@@ -96,7 +103,7 @@ namespace MRServerAPI
                 AutomaticChallenge=true,
                 TokenValidationParameters=tokenValidationParameters
             });
-
+            app.UseCors("WhiteList");
             app.UseMvc();
         }
     }

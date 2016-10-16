@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace SupportLayer.ExtraModel.Abstraction
 {
-    public abstract class AArea
+    public class AreaInfo
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public Guid Id { get; set; }
+        public string CustomeHtml { get; set; }
     }
 }

@@ -5,13 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 
+// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+
 namespace MRServerAPI.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class AccountController : Controller
     {
-        // GET api/values
+        // GET: api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
@@ -29,6 +31,7 @@ namespace MRServerAPI.Controllers
         [HttpPost]
         public void Post([FromBody]string value)
         {
+
         }
 
         // PUT api/values/5

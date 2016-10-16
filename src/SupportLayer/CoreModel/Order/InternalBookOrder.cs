@@ -7,7 +7,7 @@ namespace SupportLayer.CoreModel.Order
 {
     public class InternalBookOrder :CoreModel.Abstraction.ABookOrder
     {
-        public OrderEnum.VisibleType VisibleType { get; set; }
+        public Enum.VisibleType VisibleType { get; set; }
         /// <summary>
         /// define the one who has permisson
         /// </summary>

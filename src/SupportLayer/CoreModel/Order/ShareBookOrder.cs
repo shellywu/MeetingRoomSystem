@@ -12,7 +12,7 @@ namespace SupportLayer.CoreModel.Order
         /// </summary>
         public Guid ShareId { get; set; }
 
-        public CoreModel.Abstraction.AppUser ShareMan { get; set; }
-        public ICollection<CoreModel.Abstraction.AppUser> ReciverMan { get; set; }
+        public CoreModel.Abstraction.AUser ShareMan { get; set; }
+        public ICollection<CoreModel.Abstraction.AUser> ReciverMan { get; set; }
     }
 }

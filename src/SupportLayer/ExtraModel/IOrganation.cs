@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace SupportLayer.ExtraModel.Abstraction
 {
-    interface ICompany
+    interface IOrganation
     {
+
     }
 }

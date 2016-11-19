@@ -4,15 +4,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-
+using SupportLayer.CoreModel;
+using SupportLayer.Manager.Account;
+using SupportLayer.Manager.Account.Abstraction;
+using CommonUtitly;
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace MRServerAPI.Controllers
+namespace MRServerAPI.Controllers.Account
 {
-    [Authorize]
+
     [Route("api/[controller]")]
     public class AccountController : Controller
     {
+        private AUserManager _userManager = null;
+        public AccountController()
+        {
+            _userManager = new CUserManager();
+        }
         // GET: api/values
         [HttpGet]
         public IEnumerable<string> Get()
@@ -26,12 +34,14 @@ namespace MRServerAPI.Controllers
         {
             return "value";
         }
-
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        //[AllowAnonymous]
+        //// POST api/values
+        //[HttpPost]
+        [ValidationModelActionFilter]
+        public IActionResult Post([FromBody]AppUser user)
         {
-
+            return Ok(user);
         }
 
         // PUT api/values/5

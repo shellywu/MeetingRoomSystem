@@ -44,13 +44,22 @@ namespace MRServerAPI
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
-            //容许跨域请求
-            services.AddCors(options=> {
-                options.AddPolicy("WhiteList",builder=> {
-                    builder.WithOrigins(Configuration.GetValue<string[]>("WhiteList"))
-                    .WithMethods("GET", "POST", "PUT", "DELETE");
-                });
-            });
+
+            var wl = new List<string>();
+            foreach (var item in Configuration.GetSection("WhiteList").GetChildren())
+            {
+                wl.Add(item.Value);
+            }
+
+            ////容许跨域请求
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("WhiteList", builder =>
+            //    {
+            //        builder.WithOrigins(wl.ToArray())
+            //        .WithMethods("GET", "POST", "PUT", "DELETE");
+            //    });
+            //});
 
             services.AddMvc();
         }
@@ -71,17 +80,20 @@ namespace MRServerAPI
 
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(securityKey));
 
-            var options = new IdentityTokenProvider() {
-                SignManager=new CSignManager(new AppUser()),
-                TokenParamters=new CTokenParameters() {
+            var options = new IdentityTokenProvider()
+            {
+                SignManager = new CSignManager(new AppUser()),
+                TokenParamters = new CTokenParameters()
+                {
                     Audience = aduience,
                     Issuer = issuer,
                     SigningCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256)
                 }
             };
-            app.UseMiddleware<CTokenProviderMiddleware>(new object[] { options});
+            app.UseMiddleware<CTokenProviderMiddleware>(new object[] { options });
 
-            var tokenValidationParameters = new TokenValidationParameters {
+            var tokenValidationParameters = new TokenValidationParameters
+            {
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = signingKey,
 
@@ -98,12 +110,13 @@ namespace MRServerAPI
                 ClockSkew = TimeSpan.Zero
             };
 
-            app.UseJwtBearerAuthentication(new JwtBearerOptions {
-                AutomaticAuthenticate=true,
-                AutomaticChallenge=true,
-                TokenValidationParameters=tokenValidationParameters
+            app.UseJwtBearerAuthentication(new JwtBearerOptions
+            {
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true,
+                TokenValidationParameters = tokenValidationParameters
             });
-            app.UseCors("WhiteList");
+            //app.UseCors("WhiteList");
             app.UseMvc();
         }
     }

@@ -15,6 +15,10 @@ namespace SupportLayer.CoreModel.Abstraction
         public Enum.RoomStatus Status { get; set; }
         public string AdminEmail { get; set; }
         public AreaConfig Config { get; set; }
-        public ExtraModel.Abstraction.AreaInfo AreaInfo { get; set; }
+
+        /// <summary>
+        /// 地区的描述
+        /// </summary>
+        public ExtraModel.Abstraction.AreaIntroduction AreaIntroduction { get; set; }
     }
 }

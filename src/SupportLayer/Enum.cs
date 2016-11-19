@@ -36,4 +36,11 @@ namespace SupportLayer.Enum
         /// </summary>
         Offline = 2
     }
+
+    public enum ModelEditType : int
+    {
+        Create = 0,
+        Edit = 1,
+        Delete = 2
+    }
 }

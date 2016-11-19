@@ -14,7 +14,7 @@ namespace SupportLayer.Manager.OrderManage
 
         public override ABookOrder CreateOrder()
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

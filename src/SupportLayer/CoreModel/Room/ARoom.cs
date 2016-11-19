@@ -14,7 +14,11 @@ namespace SupportLayer.CoreModel.Abstraction
         public int MaxSize{ get; set; }
         public AArea Area { get; set; }
         public RoomInfo RoomInfo { get; set; }
-        public AppUser AdminUser { get; set; }
+
+        /// <summary>
+        /// 创建人
+        /// </summary>
+        public AppUser CreateUser { get; set; }
 
         public Enum.RoomStatus Status { get; set; }
 

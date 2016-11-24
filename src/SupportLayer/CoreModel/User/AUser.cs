@@ -23,7 +23,10 @@ namespace SupportLayer.CoreModel.Abstraction
         public DateTime CreateDate { get; set; }
         public DateTime ModifyDate { get; set; }
         public AUser CreateBy { get; set; }
-        public IEnumerable<AUserRole> UserRole { get; set; }
-        public AApp App { get; set; }
+
+        public abstract AUserRole Role { get; set; }
+        public abstract AApp App { get; set; }
+
+
     }
 }

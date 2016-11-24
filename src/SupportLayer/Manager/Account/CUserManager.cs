@@ -6,6 +6,7 @@ using SupportLayer.CoreModel;
 using SupportLayer.Manager.Account.Abstraction;
 using SupportLayer.CoreModel.Abstraction;
 using SupportLayer.DB;
+using Microsoft.EntityFrameworkCore;
 
 namespace SupportLayer.Manager.Account
 {
@@ -15,11 +16,19 @@ namespace SupportLayer.Manager.Account
         public CUserManager()
         {
         }
+
+        public override DbContext Context
+        {
+            get
+            {
+                return context;
+            }
+        }
+
         public override bool AddUser(AUser user, AApp app)
         {
             user.App = app;
             context.Users.Add(user as AppUser);
-            context.SaveChanges();
             return true;
         }
 
@@ -27,21 +36,18 @@ namespace SupportLayer.Manager.Account
         {
             var urmap = new UserRoleMap() { User = user as AppUser, Role = userRole as Role };
             context.UserRoleMap.Add(urmap);
-            context.SaveChanges();
             return true;
         }
 
         public override bool DeleteUser(AUser user)
         {
             context.Users.Remove(user as AppUser);
-            context.SaveChanges();
             return true;
         }
 
         public override bool DeleteUserRole(AUser user, AUserRole userRole)
         {
             context.UserRoleMap.Remove(new UserRoleMap { User = user as AppUser, Role = userRole as Role });
-            context.SaveChanges();
             return true;
         }
 
@@ -54,7 +60,6 @@ namespace SupportLayer.Manager.Account
         public override bool ModifyUser(AUser modifyUser)
         {
             context.Users.Update(modifyUser as AppUser);
-            context.SaveChanges();
             return true;
         }
     }

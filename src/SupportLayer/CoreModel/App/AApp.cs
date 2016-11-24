@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SupportLayer.CoreModel.Abstraction
 {
@@ -9,5 +10,6 @@ namespace SupportLayer.CoreModel.Abstraction
     {
         public Guid AppId { get; set; }
         public string Name { get; set; }
+        public virtual ICollection<AUser>  Users { get; set; }
     }
 }

@@ -43,4 +43,9 @@ namespace SupportLayer.Enum
         Edit = 1,
         Delete = 2
     }
+
+    public enum RoleType : int
+    {
+        Admin = 10000001
+    }
 }

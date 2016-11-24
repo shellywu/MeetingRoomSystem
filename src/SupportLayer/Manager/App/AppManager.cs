@@ -10,12 +10,24 @@ namespace SupportLayer.Manager.App
     {
         public AApp CreateApp(AApp app)
         {
-            throw new NotImplementedException();
+            var dapp = app as CoreModel.CDefualtApp;
+            using (var db = new DB.AppDbContext())
+            {
+                db.Apps.Add(dapp);
+                db.SaveChanges();
+            }
+            return dapp;
         }
 
         public AApp ModifyApp(AApp app)
         {
-            throw new NotImplementedException();
+            var dapp = app as CoreModel.CDefualtApp;
+            using (var dbstore = new DB.AppDbContext())
+            {
+                dbstore.Update(dapp);
+                dbstore.SaveChanges();
+            }
+            return dapp;
         }
     }
 }

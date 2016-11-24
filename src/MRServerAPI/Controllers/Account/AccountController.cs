@@ -16,10 +16,10 @@ namespace MRServerAPI.Controllers.Account
     [Route("api/[controller]")]
     public class AccountController : Controller
     {
-        private AUserManager _userManager = null;
+        private Model.AccountFaced _accountFaced = null;
         public AccountController()
         {
-            _userManager = new CUserManager();
+            _accountFaced = new Model.AccountFaced();
         }
         // GET: api/values
         [HttpGet]
@@ -41,7 +41,14 @@ namespace MRServerAPI.Controllers.Account
         [ValidationModelActionFilter]
         public IActionResult Post([FromBody]AppUser user)
         {
-            return Ok(user);
+            if (user.App == null)
+            {
+                var r = _accountFaced.CreateNewAccount(user);
+                return Ok(r);
+            }
+
+            var radd = _accountFaced.AddNewAccount(user);
+            return Ok(radd);
         }
 
         // PUT api/values/5

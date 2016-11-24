@@ -17,7 +17,7 @@ namespace SupportLayer.Manager.App
         public static IAppManager CreateApp<T>(IAppCreatePipe rootnode) where T : IAppBuilder
         {
             ///为appManager添加处理管道
-            var dab = Activator.CreateInstance(typeof(T)) as IAppBuilder;
+            var dab = Activator.CreateInstance<T>();
             dab.Add(rootnode);
             return dab.Builder();
         }

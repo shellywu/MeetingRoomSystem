@@ -10,7 +10,7 @@ namespace SupportLayer.Manager.App
         /// <summary>
         /// 管道中下一个节点
         /// </summary>
-        IAppCreatePipe Next { get; set; }
+        IAppCreatePipe Next { get; }
 
         Enum.ModelEditType ModelEditType { get; set; }
         /// <summary>
